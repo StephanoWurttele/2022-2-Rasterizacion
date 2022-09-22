@@ -14,6 +14,7 @@ float vertices1[] = {
         0, 0, 1,         0.25, -0.5, 1,   0.85, 0, 0,
         0, 0, 1,         0.85, 0, 0,      0.5, 0.5, 0,
 };
+
 float vertices2[] = {
         0, 0, 0,
         0.5, 0, 0,
@@ -99,8 +100,9 @@ static void CreateShaderProgram (char* vertexShaderFile, char* fragmentShaderFil
 }
 
 void Redisplay(void) {
+    glClearColor(1.f, 1.f, 1.f, 1.f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+    //glViewport(0, 0, 600, 100);
     glUseProgram(p_id);
     glVertexAttribPointer(vertex_id, 3, GL_FLOAT, GL_FALSE, 0, (const void *)vertices1);
     glEnableVertexAttribArray(vertex_id);
@@ -112,17 +114,18 @@ void Redisplay(void) {
 }
 
 void setup() {
-    CreateShaderProgram("../vertexShader.vs", "../fragmentShader.fs", p_id);
+    CreateShaderProgram("../vertexShader.vs", "../fragmentShader2.fs", p_id);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnable(GL_DEPTH_TEST);
     glBindAttribLocation(p_id, vertex_id, "aPos");
+
 }
 
 
 int main(int argc, char* argv[]) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB);
-    glutInitWindowSize(400, 300);
+    glutInitWindowSize(600, 300);
 
     int nWindow = glutCreateWindow("test");
 
