@@ -10,18 +10,19 @@ void processInput(GLFWwindow *window);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-const char *vertexShaderSource = "#version 330 core\n"
-    "layout (location = 0) in vec3 aPos;\n"
-    "void main()\n"
-    "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-    "}\0";
-const char *fragmentShaderSource = "#version 330 core\n"
-    "out vec4 FragColor;\n"
-    "void main()\n"
-    "{\n"
-    "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-    "}\n\0";
+char* readShader(char *nameFile) {
+    FILE* filePointer = fopen(nameFile, "rb");
+    char* content = NULL;
+    long numVal = 0;
+    fseek(filePointer, 0L, SEEK_END);
+    numVal = ftell(filePointer);
+    fseek(filePointer, 0L, SEEK_SET);
+    content = (char*) malloc((numVal+1) * sizeof(char));
+    fread(content, 1, numVal, filePointer);
+    content[numVal] = '\0';
+    fclose(filePointer);
+    return content;
+}
 
 int main()
 {
@@ -49,6 +50,9 @@ int main()
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
+
+    char*	vertexShaderSource   = readShader("../vertexShader.vs");
+    char*	fragmentShaderSource   = readShader("../fragmentShader.fs");
 
     // build and compile our shader program
     // vertex shader
