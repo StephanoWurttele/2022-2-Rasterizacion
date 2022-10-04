@@ -51,6 +51,12 @@ void Redisplay(void) {
     //glDrawArrays(GL_TRIANGLES, 0, 12);
     glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, (const void *) indices2);
 
+    for(int i=1; i < 10; i++) {
+        matrix_model.traslacion(i/10.0, rand()%10/10.0, 0);
+        glUniformMatrix4fv(matrix_model_id, 1, transpose, matrix_model.m);
+        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, (const void *) indices2);
+    }
+
     glDisableVertexAttribArray(vertex_id);
     glutSwapBuffers();
 }
