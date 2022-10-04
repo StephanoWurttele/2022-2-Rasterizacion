@@ -53,8 +53,8 @@ int main() {
         return -1;
     }
 
-    char*	vertexShaderSource   = readShader("../vertexShader.vs");
-    char*	fragmentShaderSource   = readShader("../fragmentShader.fs");
+    char*	vertexShaderSource   = readShader("../vertexShader_modelo.vs");
+    char*	fragmentShaderSource   = readShader("../fragmentShader2.fs");
 
     // build and compile our shader program
     // vertex shader
@@ -99,10 +99,10 @@ int main() {
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices2[] = {
-            0, 0, 0,
-            0.5, 0, 0,
+            0, 0, 0.3,
+            0.5, 0, 0.6,
             0.25, 0.25, 0.5,
-            0.25, 0.5, 0,
+            0.25, 0.5, 0.8,
     };
     unsigned int indices2[] = {
             0, 2, 1,
@@ -150,15 +150,19 @@ int main() {
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 
+        GLboolean transpose = GL_TRUE;
         mat4 matrix_model;
         matrix_model.traslacion(tx, ty, 0);
-        GLboolean transpose = GL_TRUE;
         glUniformMatrix4fv(matrix_model_id, 1, transpose, matrix_model.m);
 
         //glDrawArrays(GL_LINE_STRIP, 0, 6);
         //glDrawArrays(GL_TRIANGLES, 0, 6);
         glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
         // glBindVertexArray(0); // no need to unbind it every time 
+
+        matrix_model.traslacion(-1, 0.6, 0);
+        glUniformMatrix4fv(matrix_model_id, 1, transpose, matrix_model.m);
+        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         glfwSwapBuffers(window);
@@ -180,7 +184,13 @@ void processInput(GLFWwindow *window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        tx -= 0.1;
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         tx += 0.1;
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        ty += 0.1;
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        ty -= 0.1;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
