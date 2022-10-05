@@ -5,6 +5,8 @@ glfw/cmake-build-debug/*
 glfw/.idea/*
 Piramide1/cmake-build-debug/*
 Piramide1/.idea/*
+LearnOpenGL/cmake-build-debug/*
+LearnOpenGL/.idea/*
 # Prerequisites
 *.d
 
