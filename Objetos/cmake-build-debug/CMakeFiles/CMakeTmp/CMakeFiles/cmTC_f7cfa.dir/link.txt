@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2021.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\cmTC_f7cfa.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\cmTC_f7cfa.dir/objects.a @CMakeFiles\cmTC_f7cfa.dir\objects1.rsp
+C:\MinGW\bin\gcc.exe  -v -Wl,--whole-archive CMakeFiles\cmTC_f7cfa.dir/objects.a -Wl,--no-whole-archive -o cmTC_f7cfa.exe -Wl,--out-implib,libcmTC_f7cfa.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
