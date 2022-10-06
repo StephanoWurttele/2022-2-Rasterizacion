@@ -1,0 +1,3 @@
+D:/CG/2022-2-Rasterizacion/Objetos/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/CG/2022-2-Rasterizacion/Objetos/cmake-build-debug/CMakeFiles/Objetos.dir
+D:/CG/2022-2-Rasterizacion/Objetos/cmake-build-debug/CMakeFiles/edit_cache.dir
