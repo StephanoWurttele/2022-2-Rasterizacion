@@ -75,18 +75,18 @@ include CMakeFiles/Objetos.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Objetos.dir/flags.make
 
-CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj: CMakeFiles/Objetos.dir/flags.make
-CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj: ../basic_lighting_specular.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CG\2022-2-Rasterizacion\Objetos\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Objetos.dir\basic_lighting_specular.cpp.obj -c D:\CG\2022-2-Rasterizacion\Objetos\basic_lighting_specular.cpp
+CMakeFiles/Objetos.dir/main.cpp.obj: CMakeFiles/Objetos.dir/flags.make
+CMakeFiles/Objetos.dir/main.cpp.obj: ../main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CG\2022-2-Rasterizacion\Objetos\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Objetos.dir/main.cpp.obj"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Objetos.dir\main.cpp.obj -c D:\CG\2022-2-Rasterizacion\Objetos\main.cpp
 
-CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.i"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\CG\2022-2-Rasterizacion\Objetos\basic_lighting_specular.cpp > CMakeFiles\Objetos.dir\basic_lighting_specular.cpp.i
+CMakeFiles/Objetos.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Objetos.dir/main.cpp.i"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\CG\2022-2-Rasterizacion\Objetos\main.cpp > CMakeFiles\Objetos.dir\main.cpp.i
 
-CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.s"
-	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CG\2022-2-Rasterizacion\Objetos\basic_lighting_specular.cpp -o CMakeFiles\Objetos.dir\basic_lighting_specular.cpp.s
+CMakeFiles/Objetos.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Objetos.dir/main.cpp.s"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CG\2022-2-Rasterizacion\Objetos\main.cpp -o CMakeFiles\Objetos.dir\main.cpp.s
 
 CMakeFiles/Objetos.dir/glad.c.obj: CMakeFiles/Objetos.dir/flags.make
 CMakeFiles/Objetos.dir/glad.c.obj: ../glad.c
@@ -127,25 +127,40 @@ CMakeFiles/Objetos.dir/glut_ply.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Objetos.dir/glut_ply.cpp.s"
 	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CG\2022-2-Rasterizacion\Objetos\glut_ply.cpp -o CMakeFiles\Objetos.dir\glut_ply.cpp.s
 
+CMakeFiles/Objetos.dir/Objeto.cpp.obj: CMakeFiles/Objetos.dir/flags.make
+CMakeFiles/Objetos.dir/Objeto.cpp.obj: ../Objeto.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CG\2022-2-Rasterizacion\Objetos\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Objetos.dir/Objeto.cpp.obj"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Objetos.dir\Objeto.cpp.obj -c D:\CG\2022-2-Rasterizacion\Objetos\Objeto.cpp
+
+CMakeFiles/Objetos.dir/Objeto.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Objetos.dir/Objeto.cpp.i"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\CG\2022-2-Rasterizacion\Objetos\Objeto.cpp > CMakeFiles\Objetos.dir\Objeto.cpp.i
+
+CMakeFiles/Objetos.dir/Objeto.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Objetos.dir/Objeto.cpp.s"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CG\2022-2-Rasterizacion\Objetos\Objeto.cpp -o CMakeFiles\Objetos.dir\Objeto.cpp.s
+
 # Object files for target Objetos
 Objetos_OBJECTS = \
-"CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj" \
+"CMakeFiles/Objetos.dir/main.cpp.obj" \
 "CMakeFiles/Objetos.dir/glad.c.obj" \
 "CMakeFiles/Objetos.dir/stb_image.cpp.obj" \
-"CMakeFiles/Objetos.dir/glut_ply.cpp.obj"
+"CMakeFiles/Objetos.dir/glut_ply.cpp.obj" \
+"CMakeFiles/Objetos.dir/Objeto.cpp.obj"
 
 # External object files for target Objetos
 Objetos_EXTERNAL_OBJECTS =
 
-Objetos.exe: CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj
+Objetos.exe: CMakeFiles/Objetos.dir/main.cpp.obj
 Objetos.exe: CMakeFiles/Objetos.dir/glad.c.obj
 Objetos.exe: CMakeFiles/Objetos.dir/stb_image.cpp.obj
 Objetos.exe: CMakeFiles/Objetos.dir/glut_ply.cpp.obj
+Objetos.exe: CMakeFiles/Objetos.dir/Objeto.cpp.obj
 Objetos.exe: CMakeFiles/Objetos.dir/build.make
 Objetos.exe: CMakeFiles/Objetos.dir/linklibs.rsp
 Objetos.exe: CMakeFiles/Objetos.dir/objects1.rsp
 Objetos.exe: CMakeFiles/Objetos.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\CG\2022-2-Rasterizacion\Objetos\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Objetos.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\CG\2022-2-Rasterizacion\Objetos\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Objetos.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Objetos.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -3,13 +3,18 @@
 
 CMakeFiles/Objetos.dir/glad.c.obj: ../glad.c
 
-CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj: ../basic_lighting_specular.cpp
-CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj: ../camera.h
-CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj: ../glut_ply.h
-CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj: ../shader_m.h
+CMakeFiles/Objetos.dir/Objeto.cpp.obj: ../Objeto.cpp
+CMakeFiles/Objetos.dir/Objeto.cpp.obj: ../Objeto.h
+CMakeFiles/Objetos.dir/Objeto.cpp.obj: ../shader_m.h
 
 CMakeFiles/Objetos.dir/glut_ply.cpp.obj: ../glut_ply.cpp
 CMakeFiles/Objetos.dir/glut_ply.cpp.obj: ../glut_ply.h
+
+CMakeFiles/Objetos.dir/main.cpp.obj: ../Objeto.h
+CMakeFiles/Objetos.dir/main.cpp.obj: ../camera.h
+CMakeFiles/Objetos.dir/main.cpp.obj: ../glut_ply.h
+CMakeFiles/Objetos.dir/main.cpp.obj: ../main.cpp
+CMakeFiles/Objetos.dir/main.cpp.obj: ../shader_m.h
 
 CMakeFiles/Objetos.dir/stb_image.cpp.obj: ../stb_image.cpp
 CMakeFiles/Objetos.dir/stb_image.cpp.obj: ../stb_image.h

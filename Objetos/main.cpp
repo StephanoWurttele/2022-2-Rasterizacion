@@ -1,4 +1,4 @@
-#include <iostream>
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -8,8 +8,9 @@
 //#include <learnopengl/filesystem.h>
 #include "shader_m.h"
 #include "camera.h"
+#include "Objeto.h"
 #include "glut_ply.h"
-
+#include <iostream>
 using namespace std;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -37,9 +38,12 @@ glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 Model_PLY modelo;
 char *archivo = "../models/cow.ply";
 
+
+Esfera esfera(vec3(0),2., 100, 100);
+
 int main() {
-    modelo.Load(archivo);
-    modelo.imprimir();
+    //modelo.Load(archivo);
+    //modelo.imprimir();
 
     // glfw: initialize and configure
     glfwInit();
@@ -80,6 +84,8 @@ int main() {
     // ------------------------------------
     Shader lightingShader("../2.2.basic_lighting.vs", "../2.2.basic_lighting.fs");
     Shader lightCubeShader("../2.2.light_cube.vs", "../2.2.light_cube.fs");
+
+    esfera.vao = esfera.setup();
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // first, configure the cube's VAO (and VBO)
@@ -152,6 +158,7 @@ int main() {
         //glDrawArrays(GL_TRIANGLES, 0, 36);
         glDrawElements(GL_TRIANGLES, modelo.cantIndices, GL_UNSIGNED_INT, 0);
 
+        esfera.display(lightingShader);
 
 
         // also draw the lamp object
