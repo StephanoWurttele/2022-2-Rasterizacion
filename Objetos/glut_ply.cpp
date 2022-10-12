@@ -148,69 +148,7 @@ int Model_PLY::Load(char* filename) {
                     sscanf(buffer, "%i %i %i", &Indices[i], &Indices[i+1], &Indices[i+2]);
                     //std::cout << Indices[i] << "\t" << Indices[i+1] << "\t" << Indices[i+2] << std::endl;
 
-                    /*vertex1 -= 1;
-                     vertex2 -= 1;
-                     vertex3 -= 1;
-                     */
-                    //  vertex == punt van vertex lijst
-                    // vertex_buffer -> xyz xyz xyz xyz
-                    //printf("%f %f %f ", Vertex_Buffer[3*vertex1], Vertex_Buffer[3*vertex1+1], Vertex_Buffer[3*vertex1+2]);
-                    /*Faces_Triangles[triangle_index]		= Vertex_Buffer[3 * vertex1];
-                    Faces_Triangles[triangle_index + 1] = Vertex_Buffer[3 * vertex1 + 1];
-                    Faces_Triangles[triangle_index + 2] = Vertex_Buffer[3 * vertex1 + 2];
-                    Faces_Triangles[triangle_index + 3] = Vertex_Buffer[3 * vertex2];
-                    Faces_Triangles[triangle_index + 4] = Vertex_Buffer[3 * vertex2 + 1];
-                    Faces_Triangles[triangle_index + 5] = Vertex_Buffer[3 * vertex2 + 2];
-                    Faces_Triangles[triangle_index + 6] = Vertex_Buffer[3 * vertex3];
-                    Faces_Triangles[triangle_index + 7] = Vertex_Buffer[3 * vertex3 + 1];
-                    Faces_Triangles[triangle_index + 8] = Vertex_Buffer[3 * vertex3 + 2];
 
-                    triangles->push_back(
-                            new Triangle(
-                                    Vector3f(Faces_Triangles[triangle_index],
-											 Faces_Triangles[triangle_index + 1],
-											 Faces_Triangles[triangle_index + 2]),
-                                    Vector3f(Faces_Triangles[triangle_index + 3],
-                                             Faces_Triangles[triangle_index + 4],
-                                             Faces_Triangles[triangle_index + 5]),
-                                    Vector3f(Faces_Triangles[triangle_index + 6],
-                                             Faces_Triangles[triangle_index + 7],
-                                             Faces_Triangles[triangle_index + 8])));
-
-                    float coord1[3] = { Faces_Triangles[triangle_index], 
-										Faces_Triangles[triangle_index + 1],
-										Faces_Triangles[triangle_index + 2] };
-                    float coord2[3] = { Faces_Triangles[triangle_index + 3], 
-										Faces_Triangles[triangle_index + 4],
-										Faces_Triangles[triangle_index + 5] };
-                    float coord3[3] = { Faces_Triangles[triangle_index + 6], 
-										Faces_Triangles[triangle_index + 7],
-										Faces_Triangles[triangle_index + 8] };
-                    float *norm = this->calculateNormal(coord1, coord2, coord3);          
-
-                    Normals[normal_index] = norm[0];
-                    Normals[normal_index + 1] = norm[1];
-                    Normals[normal_index + 2] = norm[2];
-                    Normals[normal_index + 3] = norm[0];
-                    Normals[normal_index + 4] = norm[1];
-                    Normals[normal_index + 5] = norm[2];
-                    Normals[normal_index + 6] = norm[0];
-                    Normals[normal_index + 7] = norm[1];
-                    Normals[normal_index + 8] = norm[2];
-
-                    normal_index += 9;
-
-                    triangle_index += 9;
-                    TotalConnectedTriangles += 3;
-
-					// Position Min and Max
-					posMin.x = min( min(posMin.x, coord1[0]), min(coord2[0], coord3[0]) );
-					posMin.y = min( min(posMin.y, coord1[1]), min(coord2[1], coord3[1]) );
-					posMin.z = min( min(posMin.z, coord1[2]), min(coord2[2], coord3[2]) );
-
-					posMax.x = max( max(posMax.x, coord1[0]), max(coord2[0], coord3[0]) );
-					posMax.y = max( max(posMax.y, coord1[1]), max(coord2[1], coord3[1]) );
-					posMax.z = max( max(posMax.z, coord1[2]), max(coord2[2], coord3[2]) );*/
                 }
 
                 i += 3;
@@ -225,78 +163,31 @@ int Model_PLY::Load(char* filename) {
     }
     return 0;
 }
-/*
-void Model_PLY::Draw() {
-    glEnableClientState (GL_VERTEX_ARRAY);
-    glEnableClientState (GL_NORMAL_ARRAY);
-    glVertexPointer(3, GL_FLOAT, 0, Faces_Triangles);
-    glNormalPointer(GL_FLOAT, 0, Normals);
-    glDrawArrays(GL_TRIANGLES, 0, TotalConnectedTriangles);
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_NORMAL_ARRAY);
-}
 
-void Model_PLY::transform(Matrix4f transformation) {
-    int i = 0;
-    int iterator;
-    for (iterator = 0; iterator < this->TotalConnectedPoints; iterator++) {
-        Vector4f d(Vertex_Buffer[i], Vertex_Buffer[i + 1], Vertex_Buffer[i + 2], 1.0);
-        d = transformation * d;
-        Vertex_Buffer[i] = d[0];
-        Vertex_Buffer[i + 1] = d[1];
-        Vertex_Buffer[i + 2] = d[2];
-        i += 3;
-    }
-    i = 0;
-    int triangle_index = 0;
-    for (iterator = 0; iterator < this->TotalFaces; iterator++)
-    {
-        Vector4f d(Faces_Triangles[triangle_index], Faces_Triangles[triangle_index + 1], Faces_Triangles[triangle_index + 2], 1.0);
-        d = transformation * d;
-        Faces_Triangles[triangle_index] = d[0];
-        Faces_Triangles[triangle_index + 1] = d[1];
-        Faces_Triangles[triangle_index + 2] = d[2];
-
-        d = Vector4f(Faces_Triangles[triangle_index + 3], Faces_Triangles[triangle_index + 4], Faces_Triangles[triangle_index + 5], 1.0);
-        d = transformation * d;
-        Faces_Triangles[triangle_index + 3] = d[0];
-        Faces_Triangles[triangle_index + 4] = d[1];
-        Faces_Triangles[triangle_index + 5] = d[2];
-
-        d = Vector4f(Faces_Triangles[triangle_index + 6], Faces_Triangles[triangle_index + 7], Faces_Triangles[triangle_index + 8], 1.0);
-        d = transformation * d;
-        Faces_Triangles[triangle_index + 6] = d[0];
-        Faces_Triangles[triangle_index + 7] = d[1];
-        Faces_Triangles[triangle_index + 8] = d[2];
-        triangle_index += 9;
-    }
-    i = 0;
-    for (i = 0; i < int(triangles->size()); i++)
-    {
-        Vector4f d((*triangles)[i]->v[0].x, (*triangles)[i]->v[0].y, (*triangles)[i]->v[0].z, 1.0);
-        d = transformation * d;
-        (*triangles)[i]->v[0] = Vector3d(d[0], d[1], d[2]);
-
-        d = Vector4f((*triangles)[i]->v[1].x, (*triangles)[i]->v[1].y, (*triangles)[i]->v[1].z, 1.0);
-                d = transformation * d;
-        (*triangles)[i]->v[1] = Vector3d(d[0], d[1], d[2]);
-
-        d = Vector4f((*triangles)[i]->v[2].x, (*triangles)[i]->v[2].y, (*triangles)[i]->v[2].z, 1.0);
-                d = transformation * d;
-        (*triangles)[i]->v[2] = Vector3d(d[0], d[1], d[2]);
-    }
-}
-*/
 void Model_PLY::imprimir() {
     std::cout << "\nVertices:\n";
-    for (int i = 0; i < cantVertices; i+=6) {
+    for (int i = 0; i < cantVertices*6; i+=6) {
         std::cout << Vertices[i] << " " << Vertices[i+1]
                 << " " << Vertices[i+2] << " " << Vertices[i+3]
                 << " " << Vertices[i+4] << " " << Vertices[i+5] << std::endl;
     }
     std::cout << "\nIndices: \n";
-    for (int i=0; i < cantIndices; i+=3) {
+    for (int i=0; i < cantIndices*3; i+=3) {
         std::cout << Indices[i] << " " << Indices[i+1]
                 << " " << Indices[i+2] << std::endl;
     }
+}
+
+int Model_PLY::enviar_GPU() {
+    glGenVertexArrays(1, &vao);
+    GLuint vbos[2];
+    glGenBuffers(2, vbos);
+
+    glBindBuffer(GL_ARRAY_BUFFER, vbos[0]);
+    glBufferData(GL_ARRAY_BUFFER, cantVertices*6*sizeof(float), Vertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(POSITION_ATTRIBUTE,3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*)0);
+    glEnableVertexAttribArray(POSITION_ATTRIBUTE);
+
+    glVertexAttribPointer(NORMAL_ATTRIBUTE,3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*)(3*sizeof(float)));
+    glEnableVertexAttribArray(NORMAL_ATTRIBUTE);
 }

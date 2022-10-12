@@ -1,6 +1,6 @@
 #ifndef GLUT_PLY_H
 #define GLUT_PLY_H
-
+#include <glad/glad.h>
 #include <vector>
 //#include "vmath.h"
 
@@ -21,14 +21,10 @@ public:
 
     int     cantVertices;
     int     cantIndices;
+    GLuint vao;
+    GLint POSITION_ATTRIBUTE=0, NORMAL_ATTRIBUTE=1;
     void imprimir();
-
-//    int		TotalConnectedTriangles;
-//    int		TotalConnectedPoints;
-//    int		TotalFaces;
-
-//    float	scaleFactor;
-//	vector<Triangle*> *triangles;
+    int enviar_GPU();
 
 	// Position min and max for AABB
 //	Vector3f posMin, posMax;
