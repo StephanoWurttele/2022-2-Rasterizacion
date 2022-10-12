@@ -1,0 +1,3 @@
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/piramides/cmake-build-debug/CMakeFiles/LearnOpenGL.dir
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/piramides/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/piramides/cmake-build-debug/CMakeFiles/rebuild_cache.dir

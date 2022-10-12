@@ -6,10 +6,12 @@
 #include <glm/gtc/type_ptr.hpp>
 
 //#include <learnopengl/filesystem.h>
-#include "shader_m.h"
-#include "camera.h"
+#include "../LearnOpenGL/shader_m.h"
+#include "../LearnOpenGL/camera.h"
 
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -32,6 +34,14 @@ float lastFrame = 0.0f;
 
 // lighting
 glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+
+void drawPyramid(Shader &lightingShader, unsigned int pyramidVAO, glm::mat4& model){
+    lightingShader.setMat4("model", model);
+
+    // render the cube
+    glBindVertexArray(pyramidVAO);
+    glDrawArrays(GL_TRIANGLES, 0, 12);
+}
 
 int main()
 {
@@ -83,43 +93,31 @@ int main()
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
     float vertices[] = {
-            0.0f, 0.0f, 0.0f,  0.0f,  0.0f, -1.0f,
-            1.0f, 0.0f, 0.0f,  0.0f,  0.0f, -1.0f,
-            0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-            0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+            0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f,
+            1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f,
+            0.5f,  1.0f, 0.0f, 0.0f, 0.0f, -1.0f,
 
-            -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-            0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-            0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-            0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+            0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.5f,
+            1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.5f,
+            0.5f, 0.5f, 1.0f, 0.0f, -1.0f, 0.5f,
 
-            -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-            -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+            0.5f, 0.5f, 1.0f, 1.0f, 0.5f, 0.25f,
+            1.0f, 0.0f, 0.0f, 1.0f, 0.5f, 0.25f,
+            0.5f,  1.0f, 0.0f, 1.0f, 0.5f, 0.25f,
 
-            0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-            0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-            0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-            0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-            0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-            0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+            0.0f, 0.0f, 0.0f, -1.0f, 0.5f, 0.25f,
+            0.5f,  1.0f, 0.0f, -1.0f, 0.5f, 0.25f,
+            0.5f, 0.5f, 1.0f, -1.0f, 0.5f, 0.25f,
     };
     // first, configure the cube's VAO (Vertex Array Object) (and VBO - Vertex Buffer Object)
-    unsigned int VBO, cubeVAO;
-    glGenVertexArrays(1, &cubeVAO);
+    unsigned int VBO, pyramidVAO;
+    glGenVertexArrays(1, &pyramidVAO);
     glGenBuffers(1, &VBO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    glBindVertexArray(cubeVAO);
+    glBindVertexArray(pyramidVAO);
 
     // position attribute
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
@@ -131,9 +129,9 @@ int main()
 
     // second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which
     // is also a 3D cube)
-    unsigned int lightCubeVAO;
-    glGenVertexArrays(1, &lightCubeVAO);
-    glBindVertexArray(lightCubeVAO);
+    unsigned int lightPyramidVAO;
+    glGenVertexArrays(1, &lightPyramidVAO);
+    glBindVertexArray(lightPyramidVAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     // note that we update the lamp's position attribute's stride to reflect the updated buffer data
@@ -143,6 +141,15 @@ int main()
 
     // render loop
     // -----------
+    srand(0);
+    const int npiramides = 10;
+    glm::mat4 models[npiramides];
+
+    for(int i = 0; i < npiramides; ++i){
+        models[i] = glm::mat4(1.0f);
+        models[i] = glm::translate(models[i], glm::vec3(rand()%10, rand()%10, rand()%10));
+    }
+
     while (!glfwWindowShouldClose(window))
     {
         // per-frame time logic
@@ -178,8 +185,12 @@ int main()
         lightingShader.setMat4("model", model);
 
         // render the cube
-        glBindVertexArray(cubeVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(pyramidVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 12);
+
+        for(int i = 0; i < npiramides; i++) {
+            drawPyramid(lightingShader, pyramidVAO, models[i]);
+        }
 
 
         // also draw the lamp object
@@ -191,8 +202,8 @@ int main()
         model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
         lightCubeShader.setMat4("model", model);
 
-        glBindVertexArray(lightCubeVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(lightPyramidVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 12);
 
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -203,8 +214,8 @@ int main()
 
     // optional: de-allocate all resources once they've outlived their purpose:
     // ------------------------------------------------------------------------
-    glDeleteVertexArrays(1, &cubeVAO);
-    glDeleteVertexArrays(1, &lightCubeVAO);
+    glDeleteVertexArrays(1, &pyramidVAO);
+    glDeleteVertexArrays(1, &lightPyramidVAO);
     glDeleteBuffers(1, &VBO);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
