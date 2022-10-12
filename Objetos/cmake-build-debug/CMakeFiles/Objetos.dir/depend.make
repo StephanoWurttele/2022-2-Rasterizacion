@@ -9,6 +9,7 @@ CMakeFiles/Objetos.dir/Objeto.cpp.obj: ../shader_m.h
 
 CMakeFiles/Objetos.dir/glut_ply.cpp.obj: ../glut_ply.cpp
 CMakeFiles/Objetos.dir/glut_ply.cpp.obj: ../glut_ply.h
+CMakeFiles/Objetos.dir/glut_ply.cpp.obj: ../shader_m.h
 
 CMakeFiles/Objetos.dir/main.cpp.obj: ../Objeto.h
 CMakeFiles/Objetos.dir/main.cpp.obj: ../camera.h

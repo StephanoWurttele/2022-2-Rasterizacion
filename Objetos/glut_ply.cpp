@@ -190,4 +190,23 @@ int Model_PLY::enviar_GPU() {
 
     glVertexAttribPointer(NORMAL_ATTRIBUTE,3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*)(3*sizeof(float)));
     glEnableVertexAttribArray(NORMAL_ATTRIBUTE);
+
+    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, vbos[2] );
+    glBufferData( GL_ELEMENT_ARRAY_BUFFER, cantIndices * 3 * sizeof(GLuint), Indices, GL_STATIC_DRAW );
+    glBindVertexArray( 0 );
+    glBindBuffer( GL_ARRAY_BUFFER, 0 );
+    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
+    return vao;
+}
+
+void Model_PLY::display(Shader &sh) {
+    mat4 model = mat4(1.0);
+    model = scale(model, vec3(0.5));
+    //model = translate(model, centro);
+    sh.setMat4("model", model);
+    if (true) {
+        glBindVertexArray(vao);
+        glDrawElements(GL_TRIANGLES, cantIndices*3, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+    }
 }

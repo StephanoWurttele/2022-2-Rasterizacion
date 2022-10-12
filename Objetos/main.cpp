@@ -79,12 +79,12 @@ int main() {
     // configure global opengl state
     glEnable(GL_DEPTH_TEST);
 
-    // build and compile our shader zprogram
+    // build and compile our shader program
     Shader lightingShader("../2.2.basic_lighting.vs", "../2.2.basic_lighting.fs");
-    Shader lightCubeShader("../2.2.light_cube.vs", "../2.2.light_cube.fs");
+    //Shader lightCubeShader("../2.2.light_cube.vs", "../2.2.light_cube.fs");
 
     esfera.vao = esfera.setup();
-
+/*
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // first, configure the cube's VAO (and VBO)
     unsigned int VBO, cubeVAO, EBO;
@@ -115,7 +115,8 @@ int main() {
     // note that we update the lamp's position attribute's stride to reflect the updated buffer data
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-
+*/
+    modelo.enviar_GPU();
     // render loop
     while (!glfwWindowShouldClose(window)) {
         // per-frame time logic
@@ -146,14 +147,17 @@ int main() {
         // world transformation
         glm::mat4 model = glm::mat4(1.0f);
         lightingShader.setMat4("model", model);
-
+/*
         // render the cube
         glBindVertexArray(cubeVAO);
         //glDrawArrays(GL_TRIANGLES, 0, 36);
         glDrawElements(GL_TRIANGLES, modelo.cantIndices, GL_UNSIGNED_INT, 0);
+*/
 
         esfera.display(lightingShader);
+        modelo.display(lightingShader);
 
+/*
         // also draw the lamp object
         lightCubeShader.use();
         lightCubeShader.setMat4("projection", projection);
@@ -165,6 +169,7 @@ int main() {
 
         glBindVertexArray(lightCubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
+*/
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -173,9 +178,9 @@ int main() {
     }
 
     // optional: de-allocate all resources once they've outlived their purpose:
-    glDeleteVertexArrays(1, &cubeVAO);
-    glDeleteVertexArrays(1, &lightCubeVAO);
-    glDeleteBuffers(1, &VBO);
+ //   glDeleteVertexArrays(1, &cubeVAO);
+ //   glDeleteVertexArrays(1, &lightCubeVAO);
+ //   glDeleteBuffers(1, &VBO);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     glfwTerminate();
