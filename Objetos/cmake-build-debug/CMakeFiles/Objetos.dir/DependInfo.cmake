@@ -13,8 +13,9 @@ set(CMAKE_C_COMPILER_ID "GNU")
 set(CMAKE_C_TARGET_INCLUDE_PATH
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/CG/2022-2-Rasterizacion/Objetos/basic_lighting_specular.cpp" "D:/CG/2022-2-Rasterizacion/Objetos/cmake-build-debug/CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj"
+  "D:/CG/2022-2-Rasterizacion/Objetos/Objeto.cpp" "D:/CG/2022-2-Rasterizacion/Objetos/cmake-build-debug/CMakeFiles/Objetos.dir/Objeto.cpp.obj"
   "D:/CG/2022-2-Rasterizacion/Objetos/glut_ply.cpp" "D:/CG/2022-2-Rasterizacion/Objetos/cmake-build-debug/CMakeFiles/Objetos.dir/glut_ply.cpp.obj"
+  "D:/CG/2022-2-Rasterizacion/Objetos/main.cpp" "D:/CG/2022-2-Rasterizacion/Objetos/cmake-build-debug/CMakeFiles/Objetos.dir/main.cpp.obj"
   "D:/CG/2022-2-Rasterizacion/Objetos/stb_image.cpp" "D:/CG/2022-2-Rasterizacion/Objetos/cmake-build-debug/CMakeFiles/Objetos.dir/stb_image.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

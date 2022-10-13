@@ -1,4 +1,4 @@
-#include <iostream>
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -8,8 +8,9 @@
 //#include <learnopengl/filesystem.h>
 #include "shader_m.h"
 #include "camera.h"
+#include "Objeto.h"
 #include "glut_ply.h"
-
+#include <iostream>
 using namespace std;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -22,7 +23,7 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 // camera
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera camera(glm::vec3(0.0f, 0.0f, 50.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -37,9 +38,12 @@ glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 Model_PLY modelo;
 char *archivo = "../models/cow.ply";
 
+
+Esfera esfera(vec3(0),2., 100, 100);
+
 int main() {
     modelo.Load(archivo);
-    modelo.imprimir();
+    //modelo.imprimir();
 
     // glfw: initialize and configure
     glfwInit();
@@ -73,14 +77,14 @@ int main() {
     }
 
     // configure global opengl state
-    // -----------------------------
     glEnable(GL_DEPTH_TEST);
 
-    // build and compile our shader zprogram
-    // ------------------------------------
+    // build and compile our shader program
     Shader lightingShader("../2.2.basic_lighting.vs", "../2.2.basic_lighting.fs");
-    Shader lightCubeShader("../2.2.light_cube.vs", "../2.2.light_cube.fs");
+    //Shader lightCubeShader("../2.2.light_cube.vs", "../2.2.light_cube.fs");
 
+    esfera.vao = esfera.setup();
+/*
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // first, configure the cube's VAO (and VBO)
     unsigned int VBO, cubeVAO, EBO;
@@ -111,14 +115,11 @@ int main() {
     // note that we update the lamp's position attribute's stride to reflect the updated buffer data
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-
-
+*/
+    modelo.enviar_GPU();
     // render loop
-    // -----------
-    while (!glfwWindowShouldClose(window))
-    {
+    while (!glfwWindowShouldClose(window)) {
         // per-frame time logic
-        // --------------------
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
@@ -146,14 +147,17 @@ int main() {
         // world transformation
         glm::mat4 model = glm::mat4(1.0f);
         lightingShader.setMat4("model", model);
-
+/*
         // render the cube
         glBindVertexArray(cubeVAO);
         //glDrawArrays(GL_TRIANGLES, 0, 36);
         glDrawElements(GL_TRIANGLES, modelo.cantIndices, GL_UNSIGNED_INT, 0);
+*/
 
+        //esfera.display(lightingShader);
+        modelo.display(lightingShader);
 
-
+/*
         // also draw the lamp object
         lightCubeShader.use();
         lightCubeShader.setMat4("projection", projection);
@@ -165,7 +169,7 @@ int main() {
 
         glBindVertexArray(lightCubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
-
+*/
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -174,21 +178,17 @@ int main() {
     }
 
     // optional: de-allocate all resources once they've outlived their purpose:
-    // ------------------------------------------------------------------------
-    glDeleteVertexArrays(1, &cubeVAO);
-    glDeleteVertexArrays(1, &lightCubeVAO);
-    glDeleteBuffers(1, &VBO);
+ //   glDeleteVertexArrays(1, &cubeVAO);
+ //   glDeleteVertexArrays(1, &lightCubeVAO);
+ //   glDeleteBuffers(1, &VBO);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
-    // ------------------------------------------------------------------
     glfwTerminate();
     return 0;
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
-void processInput(GLFWwindow *window)
-{
+void processInput(GLFWwindow *window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
@@ -203,9 +203,7 @@ void processInput(GLFWwindow *window)
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
-// ---------------------------------------------------------------------------------------------
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     // make sure the viewport matches the new window dimensions; note that width and 
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
@@ -215,8 +213,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 void mouse_callback(GLFWwindow* window, double xposIn, double yposIn) {
     float xpos = static_cast<float>(xposIn);
     float ypos = static_cast<float>(yposIn);
-    if (firstMouse)
-    {
+    if (firstMouse) {
         lastX = xpos;
         lastY = ypos;
         firstMouse = false;
@@ -232,8 +229,6 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn) {
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-{
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
     camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }

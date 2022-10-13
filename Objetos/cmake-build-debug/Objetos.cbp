@@ -80,7 +80,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/CG/2022-2-Rasterizacion/Objetos/basic_lighting_specular.cpp">
+		<Unit filename="D:/CG/2022-2-Rasterizacion/Objetos/Objeto.cpp">
+			<Option target="Objetos"/>
+		</Unit>
+		<Unit filename="D:/CG/2022-2-Rasterizacion/Objetos/Objeto.h">
 			<Option target="Objetos"/>
 		</Unit>
 		<Unit filename="D:/CG/2022-2-Rasterizacion/Objetos/glad.c">
@@ -90,6 +93,9 @@
 			<Option target="Objetos"/>
 		</Unit>
 		<Unit filename="D:/CG/2022-2-Rasterizacion/Objetos/glut_ply.h">
+			<Option target="Objetos"/>
+		</Unit>
+		<Unit filename="D:/CG/2022-2-Rasterizacion/Objetos/main.cpp">
 			<Option target="Objetos"/>
 		</Unit>
 		<Unit filename="D:/CG/2022-2-Rasterizacion/Objetos/stb_image.cpp">

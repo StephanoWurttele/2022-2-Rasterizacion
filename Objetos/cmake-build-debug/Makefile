@@ -141,32 +141,32 @@ Objetos/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Objetos.dir\build.make CMakeFiles/Objetos.dir/build
 .PHONY : Objetos/fast
 
-basic_lighting_specular.obj: basic_lighting_specular.cpp.obj
+Objeto.obj: Objeto.cpp.obj
 
-.PHONY : basic_lighting_specular.obj
+.PHONY : Objeto.obj
 
 # target to build an object file
-basic_lighting_specular.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Objetos.dir\build.make CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj
-.PHONY : basic_lighting_specular.cpp.obj
+Objeto.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Objetos.dir\build.make CMakeFiles/Objetos.dir/Objeto.cpp.obj
+.PHONY : Objeto.cpp.obj
 
-basic_lighting_specular.i: basic_lighting_specular.cpp.i
+Objeto.i: Objeto.cpp.i
 
-.PHONY : basic_lighting_specular.i
+.PHONY : Objeto.i
 
 # target to preprocess a source file
-basic_lighting_specular.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Objetos.dir\build.make CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.i
-.PHONY : basic_lighting_specular.cpp.i
+Objeto.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Objetos.dir\build.make CMakeFiles/Objetos.dir/Objeto.cpp.i
+.PHONY : Objeto.cpp.i
 
-basic_lighting_specular.s: basic_lighting_specular.cpp.s
+Objeto.s: Objeto.cpp.s
 
-.PHONY : basic_lighting_specular.s
+.PHONY : Objeto.s
 
 # target to generate assembly for a file
-basic_lighting_specular.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Objetos.dir\build.make CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.s
-.PHONY : basic_lighting_specular.cpp.s
+Objeto.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Objetos.dir\build.make CMakeFiles/Objetos.dir/Objeto.cpp.s
+.PHONY : Objeto.cpp.s
 
 glad.obj: glad.c.obj
 
@@ -222,6 +222,33 @@ glut_ply.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Objetos.dir\build.make CMakeFiles/Objetos.dir/glut_ply.cpp.s
 .PHONY : glut_ply.cpp.s
 
+main.obj: main.cpp.obj
+
+.PHONY : main.obj
+
+# target to build an object file
+main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Objetos.dir\build.make CMakeFiles/Objetos.dir/main.cpp.obj
+.PHONY : main.cpp.obj
+
+main.i: main.cpp.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Objetos.dir\build.make CMakeFiles/Objetos.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Objetos.dir\build.make CMakeFiles/Objetos.dir/main.cpp.s
+.PHONY : main.cpp.s
+
 stb_image.obj: stb_image.cpp.obj
 
 .PHONY : stb_image.obj
@@ -258,15 +285,18 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Objetos
-	@echo ... basic_lighting_specular.obj
-	@echo ... basic_lighting_specular.i
-	@echo ... basic_lighting_specular.s
+	@echo ... Objeto.obj
+	@echo ... Objeto.i
+	@echo ... Objeto.s
 	@echo ... glad.obj
 	@echo ... glad.i
 	@echo ... glad.s
 	@echo ... glut_ply.obj
 	@echo ... glut_ply.i
 	@echo ... glut_ply.s
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
 	@echo ... stb_image.obj
 	@echo ... stb_image.i
 	@echo ... stb_image.s

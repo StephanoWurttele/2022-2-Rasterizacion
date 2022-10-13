@@ -3,14 +3,20 @@
 
 CMakeFiles/Objetos.dir/glad.c.obj
  D:/CG/2022-2-Rasterizacion/Objetos/glad.c
-CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj
- D:/CG/2022-2-Rasterizacion/Objetos/basic_lighting_specular.cpp
- D:/CG/2022-2-Rasterizacion/Objetos/camera.h
- D:/CG/2022-2-Rasterizacion/Objetos/glut_ply.h
+CMakeFiles/Objetos.dir/Objeto.cpp.obj
+ D:/CG/2022-2-Rasterizacion/Objetos/Objeto.cpp
+ D:/CG/2022-2-Rasterizacion/Objetos/Objeto.h
  D:/CG/2022-2-Rasterizacion/Objetos/shader_m.h
 CMakeFiles/Objetos.dir/glut_ply.cpp.obj
  D:/CG/2022-2-Rasterizacion/Objetos/glut_ply.cpp
  D:/CG/2022-2-Rasterizacion/Objetos/glut_ply.h
+ D:/CG/2022-2-Rasterizacion/Objetos/shader_m.h
+CMakeFiles/Objetos.dir/main.cpp.obj
+ D:/CG/2022-2-Rasterizacion/Objetos/Objeto.h
+ D:/CG/2022-2-Rasterizacion/Objetos/camera.h
+ D:/CG/2022-2-Rasterizacion/Objetos/glut_ply.h
+ D:/CG/2022-2-Rasterizacion/Objetos/main.cpp
+ D:/CG/2022-2-Rasterizacion/Objetos/shader_m.h
 CMakeFiles/Objetos.dir/stb_image.cpp.obj
  D:/CG/2022-2-Rasterizacion/Objetos/stb_image.cpp
  D:/CG/2022-2-Rasterizacion/Objetos/stb_image.h

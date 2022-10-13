@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Objetos.dir/basic_lighting_specular.cpp.obj"
+  "CMakeFiles/Objetos.dir/Objeto.cpp.obj"
   "CMakeFiles/Objetos.dir/glad.c.obj"
   "CMakeFiles/Objetos.dir/glut_ply.cpp.obj"
+  "CMakeFiles/Objetos.dir/main.cpp.obj"
   "CMakeFiles/Objetos.dir/stb_image.cpp.obj"
   "Objetos.exe"
   "Objetos.exe.manifest"
