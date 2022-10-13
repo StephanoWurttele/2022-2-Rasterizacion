@@ -4,8 +4,6 @@
 
 #include "Objeto.h"
 GLuint Esfera::setup() {
-    using namespace glm;
-    using namespace std;
     const float pi = 3.1415926535897932384626433832795f;
     const float _2pi = 2.0f * pi;
     vector<vec3> positions;
