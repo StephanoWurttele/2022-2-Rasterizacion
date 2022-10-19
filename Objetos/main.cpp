@@ -23,7 +23,7 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 // camera
-Camera camera(glm::vec3(0.0f, 0.0f, 50.0f));
+Camera camera(glm::vec3(0.0f, 0.0f, 40.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -39,11 +39,12 @@ glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 Model_PLY modelo;
 char *archivo = "../models/bunny.ply";
 
-
 Esfera esfera(vec3(0),2., 100, 100);
+Objeto *pModelo = new Esfera(vec3(0),2, 50, 50);
 vector<Objeto*> vecObjetos;
 bool proyectil_listo = false;
-Esfera *proyectil = new Esfera();
+Objeto *proyectil = new Esfera;
+//Model_PLY *proyectil = new Model_PLY;
 
 int main() {
     modelo.Load(archivo);
@@ -86,7 +87,8 @@ int main() {
     //Shader lightCubeShader("../2.2.light_cube.vs", "../2.2.light_cube.fs");
 
     esfera.vao = esfera.setup();
-    modelo.enviar_GPU();
+    pModelo->setup();
+    modelo.setup();
     // render loop
     while (!glfwWindowShouldClose(window)) {
         // per-frame time logic
@@ -117,18 +119,14 @@ int main() {
         // world transformation
         glm::mat4 model = glm::mat4(1.0f);
         lightingShader.setMat4("model", model);
-/*
-        // render the cube
-        glBindVertexArray(cubeVAO);
-        //glDrawArrays(GL_TRIANGLES, 0, 36);
-        glDrawElements(GL_TRIANGLES, modelo.cantIndices, GL_UNSIGNED_INT, 0);
-*/
 
         //esfera.display(lightingShader);
         modelo.display(lightingShader);
-        for (auto &esf : vecObjetos) {
-            esf->actualizarDatos(tiempoTranscurrido);
-            esf->display(lightingShader);
+        for (auto &obj : vecObjetos) {
+            obj->actualizarDatos(tiempoTranscurrido);
+            // calcular boundingvolume
+            // calcular colisiones
+            obj->display(lightingShader);
         }
 
 /*
@@ -181,10 +179,15 @@ void processInput(GLFWwindow *window) {
             float z = rand()%10;
             proyectil->vao = esfera.vao;
             proyectil->indices_size = esfera.indices_size;
-            proyectil->radius = esfera.radius;
+            //proyectil->radius = esfera.radius;
+            //proyectil->vao = modelo.vao;
+            //proyectil->indices_size = modelo.indices_size;
+            //proyectil->centro = pModelo->centro;
+            //proyectil->vao = pModelo->vao;
+            //proyectil->indices_size = pModelo->vao;
             vecObjetos.emplace_back(proyectil);
             proyectil_listo = true;
-            proyectil->vel_ini = vec3(20,10,0);
+            proyectil->vel_ini = vec3(10,15,0);
             proyectil->pos_ini = vec3 (x,y,z);
             proyectil->ang_ini = 45;
             tiempoInicial = static_cast<float>(glfwGetTime());

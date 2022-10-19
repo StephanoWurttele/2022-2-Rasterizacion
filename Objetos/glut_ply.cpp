@@ -9,9 +9,13 @@
 #include <fstream>
 
 Model_PLY::Model_PLY() {
+    centro = vec3(0.0);
+    pos_ini = centro;
+    vel_ini = vec3(0);
 }
 
 int Model_PLY::Load(char* filename) {
+    centro = vec3(0);
     char* pch = strstr(filename, ".ply");
     int cantVertices, cantIndices;
     float val[6];
@@ -71,6 +75,7 @@ int Model_PLY::Load(char* filename) {
                     //std::cout << Indices[i] << "\t" << Indices[i+1] << "\t" << Indices[i+2] << std::endl;
                 }
             }
+            indices_size = indices.size();
             fclose(file);
             printf("Finish!!\n");
         } else {
@@ -119,13 +124,22 @@ int Model_PLY::enviar_GPU() {
 }
 
 void Model_PLY::display(Shader &sh) {
-    mat4 model = mat4(1.0);
-    model = scale(model, vec3(5));
-    //model = translate(model, centro);
+    model = mat4(1.0);
+    model = scale(model, vec3(10));
+    model = translate(model, centro);
     sh.setMat4("model", model);
     if (true) {
         glBindVertexArray(vao);
-        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, indices_size, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
     }
+}
+void Model_PLY::actualizarDatos(float t){
+    float g = 9.8;
+    vec3 tmp = centro;
+    centro.x = pos_ini.x + vel_ini.x * cos(radians(ang_ini)) * t;
+    centro.y = pos_ini.y + vel_ini.y * sin(radians(ang_ini)) * t - 0.5 * g * t * t;
+    dir = centro - tmp;
+    //bv->calcular( *this );
+    cout<< t << "\t" << to_string(pos_ini) << "\t" << to_string(centro) << endl;
 }
