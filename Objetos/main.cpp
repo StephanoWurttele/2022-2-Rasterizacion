@@ -31,6 +31,7 @@ bool firstMouse = true;
 // timing
 float deltaTime = 0.0f;	
 float lastFrame = 0.0f;
+float tiempoInicial = 0.0f, tiempoTranscurrido = 0.0f;
 
 // lighting
 glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
@@ -40,10 +41,12 @@ char *archivo = "../models/bunny.ply";
 
 
 Esfera esfera(vec3(0),2., 100, 100);
+vector<Objeto*> vecObjetos;
+bool proyectil_listo = false;
+Esfera *proyectil = new Esfera();
 
 int main() {
     modelo.Load(archivo);
-    //modelo.imprimir();
 
     // glfw: initialize and configure
     glfwInit();
@@ -66,7 +69,6 @@ int main() {
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, scroll_callback);
-
     // tell GLFW to capture our mouse
     //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
@@ -84,38 +86,6 @@ int main() {
     //Shader lightCubeShader("../2.2.light_cube.vs", "../2.2.light_cube.fs");
 
     esfera.vao = esfera.setup();
-/*
-    // set up vertex data (and buffer(s)) and configure vertex attributes
-    // first, configure the cube's VAO (and VBO)
-    unsigned int VBO, cubeVAO, EBO;
-    glGenVertexArrays(1, &cubeVAO);
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
-
-    glBindVertexArray(cubeVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(modelo.Vertices), modelo.Vertices, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(modelo.Indices), modelo.Indices, GL_STATIC_DRAW);
-
-    // position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    // normal attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-
-    // second, configure the light's VAO (VBO stays the same; the vertices are the same for the light object which is also a 3D cube)
-    unsigned int lightCubeVAO;
-    glGenVertexArrays(1, &lightCubeVAO);
-    glBindVertexArray(lightCubeVAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    // note that we update the lamp's position attribute's stride to reflect the updated buffer data
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-*/
     modelo.enviar_GPU();
     // render loop
     while (!glfwWindowShouldClose(window)) {
@@ -123,7 +93,7 @@ int main() {
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
-
+        tiempoTranscurrido = currentFrame - tiempoInicial; //static_cast<float>(glfwGetTime());
         // input
         processInput(window);
 
@@ -154,8 +124,12 @@ int main() {
         glDrawElements(GL_TRIANGLES, modelo.cantIndices, GL_UNSIGNED_INT, 0);
 */
 
-        esfera.display(lightingShader);
+        //esfera.display(lightingShader);
         modelo.display(lightingShader);
+        for (auto &esf : vecObjetos) {
+            esf->actualizarDatos(tiempoTranscurrido);
+            esf->display(lightingShader);
+        }
 
 /*
         // also draw the lamp object
@@ -200,6 +174,25 @@ void processInput(GLFWwindow *window) {
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
+        if (!proyectil_listo){
+            float x = rand()%10;
+            float y = rand()%10;
+            float z = rand()%10;
+            proyectil->vao = esfera.vao;
+            proyectil->indices_size = esfera.indices_size;
+            proyectil->radius = esfera.radius;
+            vecObjetos.emplace_back(proyectil);
+            proyectil_listo = true;
+            proyectil->vel_ini = vec3(20,10,0);
+            proyectil->pos_ini = vec3 (x,y,z);
+            proyectil->ang_ini = 45;
+            tiempoInicial = static_cast<float>(glfwGetTime());
+        }
+    }
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_RELEASE){
+        proyectil_listo = false;
+    }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
@@ -224,8 +217,7 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn) {
 
     lastX = xpos;
     lastY = ypos;
-
-    camera.ProcessMouseMovement(xoffset, yoffset);
+    //camera.ProcessMouseMovement(xoffset, yoffset);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called

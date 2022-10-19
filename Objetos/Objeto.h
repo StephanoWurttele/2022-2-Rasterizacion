@@ -25,9 +25,11 @@ public:
     mat4 model;
     bool visible=true;
     GLint POSITION_ATTRIBUTE=0, NORMAL_ATTRIBUTE=1, TEXCOORD0_ATTRIBUTE=8;
-    vec3 vel_ini, pos_ini;
+    vec3 vel_ini, pos_ini, dir;
+    float ang_ini;
     virtual GLuint setup()=0;
     virtual void display(Shader &sh)=0;
+    virtual void actualizarDatos(float t)=0;
 };
 
 class Esfera:public Objeto{
@@ -56,6 +58,7 @@ public:
     GLuint setup();
 
     void display(Shader &sh);
+    void actualizarDatos(float t);
 };
 
 #endif //LEARNOPENGL_OBJETO_H
