@@ -10,7 +10,7 @@
 #include "../LearnOpenGL/camera.h"
 
 #include <iostream>
-#include "Objeto.h"
+#include "Universo.h"
 #include <stdlib.h>
 #include <time.h>
 
@@ -43,10 +43,11 @@ std::vector<glm::mat4> models(npiramides);
 
 // spheres
 int nesferas = 1;
-std::vector<glm::mat4> sphereModels(npiramides);
+std::vector<glm::mat4> sphereModels(nesferas);
 Esfera esfera(vec3(0),2., 100, 100);
-
-
+Universo universo;
+Shader *lightingShader;
+Shader *lightCubeShader;
 
 void drawPyramid(Shader &lightingShader, unsigned int pyramidVAO, glm::mat4& model){
     lightingShader.setMat4("model", model);
@@ -101,9 +102,10 @@ int main()
 
     // build and compile our shader zprogram
     // ------------------------------------
-    Shader lightingShader("../2.2.basic_lighting.vs", "../2.2.basic_lighting.fs");
-    Shader lightCubeShader("../2.2.light_cube.vs", "../2.2.light_cube.fs");
 
+
+    lightingShader = new Shader ("../2.2.basic_lighting.vs", "../2.2.basic_lighting.fs");
+    lightCubeShader = new Shader ("../2.2.light_cube.vs", "../2.2.light_cube.fs");
     // set up esfera texture and coordinates and indexes
     esfera.vao = esfera.setup();
 
@@ -165,11 +167,6 @@ int main()
         models[i] = glm::translate(models[i], glm::vec3(rand()%10, rand()%10, rand()%10));
     }
 
-    for(int i = 0; i < npiramides; ++i){
-        models[i] = glm::mat4(1.0f);
-        models[i] = glm::translate(models[i], glm::vec3(rand()%10, rand()%10, rand()%10));
-    }
-
     while (!glfwWindowShouldClose(window))
     {
         // per-frame time logic
@@ -189,48 +186,47 @@ int main()
 
         // be sure to activate shader when setting uniforms/drawing objects
 
-        lightingShader.use();
-        lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
-        lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-        lightingShader.setVec3("lightPos", lightPos);
-        lightingShader.setVec3("viewPos", camera.Position);
+        lightingShader->use();
+        lightingShader->setVec3("objectColor", 1.0f, 0.5f, 0.31f);
+        lightingShader->setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+        lightingShader->setVec3("lightPos", lightPos);
+        lightingShader->setVec3("viewPos", camera.Position);
 
-        // render sphere
-        for(int i = 0; i < nesferas; i++)
-            esfera.display(lightingShader, sphereModels[i]);
+        // render spheres
+        universo.processUniverse();
+        universo.displayUniverse();
 
 
         // view/projection transformations
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();
-        lightingShader.setMat4("projection", projection);
-        lightingShader.setMat4("view", view);
+        lightingShader->setMat4("projection", projection);
+        lightingShader->setMat4("view", view);
 
         // world transformation
         glm::mat4 model = glm::mat4(1.0f);
-        lightingShader.setMat4("model", model);
+        lightingShader->setMat4("model", model);
 
         // render the cube
         glBindVertexArray(pyramidVAO);
         glDrawArrays(GL_TRIANGLES, 0, 12);
 
         for(int i = 0; i < npiramides; i++) {
-            drawPyramid(lightingShader, pyramidVAO, models[i]);
+            drawPyramid(*lightingShader, pyramidVAO, models[i]);
         }
 
 
         // also draw the lamp object
-        lightCubeShader.use();
-        lightCubeShader.setMat4("projection", projection);
-        lightCubeShader.setMat4("view", view);
+        lightCubeShader->use();
+        lightCubeShader->setMat4("projection", projection);
+        lightCubeShader->setMat4("view", view);
         model = glm::mat4(1.0f);
         model = glm::translate(model, lightPos);
         model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
-        lightCubeShader.setMat4("model", model);
+        lightCubeShader->setMat4("model", model);
 
         glBindVertexArray(lightPyramidVAO);
         glDrawArrays(GL_TRIANGLES, 0, 12);
-
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -238,8 +234,8 @@ int main()
         glfwPollEvents();
     }
 
-    // optional: de-allocate all resources once they've outlived their purpose:
-    // ------------------------------------------------------------------------
+     // optional: de-allocate all resources once they've outlived their purpose:
+     // ------------------------------------------------------------------------
     glDeleteVertexArrays(1, &pyramidVAO);
     glDeleteVertexArrays(1, &lightPyramidVAO);
     glDeleteBuffers(1, &VBO);
@@ -275,7 +271,6 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
 }
-
 
 // glfw: whenever the mouse moves, this callback is called
 // -------------------------------------------------------
@@ -313,9 +308,5 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         models[npiramides-1]=glm::translate(models[npiramides-1], glm::vec3(rand()%10, rand()%10, rand()%10));
     }
     if (key == GLFW_KEY_E && action == GLFW_PRESS)
-    {
-        nesferas += 1;
-        sphereModels.push_back(glm::mat4(1.0f));
-        sphereModels[nesferas-1]=glm::translate(models[nesferas-1], glm::vec3(rand()%10, rand()%10, rand()%10));
-    }
+        universo.nuevaEntidad(&esfera, lightingShader);
 }

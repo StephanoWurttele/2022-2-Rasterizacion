@@ -141,6 +141,33 @@ LearnOpenGL/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LearnOpenGL.dir\build.make CMakeFiles/LearnOpenGL.dir/build
 .PHONY : LearnOpenGL/fast
 
+Entidad.obj: Entidad.cpp.obj
+
+.PHONY : Entidad.obj
+
+# target to build an object file
+Entidad.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LearnOpenGL.dir\build.make CMakeFiles/LearnOpenGL.dir/Entidad.cpp.obj
+.PHONY : Entidad.cpp.obj
+
+Entidad.i: Entidad.cpp.i
+
+.PHONY : Entidad.i
+
+# target to preprocess a source file
+Entidad.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LearnOpenGL.dir\build.make CMakeFiles/LearnOpenGL.dir/Entidad.cpp.i
+.PHONY : Entidad.cpp.i
+
+Entidad.s: Entidad.cpp.s
+
+.PHONY : Entidad.s
+
+# target to generate assembly for a file
+Entidad.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LearnOpenGL.dir\build.make CMakeFiles/LearnOpenGL.dir/Entidad.cpp.s
+.PHONY : Entidad.cpp.s
+
 Objeto.obj: Objeto.cpp.obj
 
 .PHONY : Objeto.obj
@@ -167,6 +194,33 @@ Objeto.s: Objeto.cpp.s
 Objeto.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LearnOpenGL.dir\build.make CMakeFiles/LearnOpenGL.dir/Objeto.cpp.s
 .PHONY : Objeto.cpp.s
+
+Universo.obj: Universo.cpp.obj
+
+.PHONY : Universo.obj
+
+# target to build an object file
+Universo.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LearnOpenGL.dir\build.make CMakeFiles/LearnOpenGL.dir/Universo.cpp.obj
+.PHONY : Universo.cpp.obj
+
+Universo.i: Universo.cpp.i
+
+.PHONY : Universo.i
+
+# target to preprocess a source file
+Universo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LearnOpenGL.dir\build.make CMakeFiles/LearnOpenGL.dir/Universo.cpp.i
+.PHONY : Universo.cpp.i
+
+Universo.s: Universo.cpp.s
+
+.PHONY : Universo.s
+
+# target to generate assembly for a file
+Universo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\LearnOpenGL.dir\build.make CMakeFiles/LearnOpenGL.dir/Universo.cpp.s
+.PHONY : Universo.cpp.s
 
 esferas.obj: esferas.cpp.obj
 
@@ -231,9 +285,15 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... LearnOpenGL
+	@echo ... Entidad.obj
+	@echo ... Entidad.i
+	@echo ... Entidad.s
 	@echo ... Objeto.obj
 	@echo ... Objeto.i
 	@echo ... Objeto.s
+	@echo ... Universo.obj
+	@echo ... Universo.i
+	@echo ... Universo.s
 	@echo ... esferas.obj
 	@echo ... esferas.i
 	@echo ... esferas.s

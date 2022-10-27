@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/LearnOpenGL.dir/Entidad.cpp.obj"
   "CMakeFiles/LearnOpenGL.dir/Objeto.cpp.obj"
+  "CMakeFiles/LearnOpenGL.dir/Universo.cpp.obj"
   "CMakeFiles/LearnOpenGL.dir/esferas.cpp.obj"
   "CMakeFiles/LearnOpenGL.dir/glad.c.obj"
   "LearnOpenGL.exe"

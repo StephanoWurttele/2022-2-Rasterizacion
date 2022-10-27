@@ -3,12 +3,25 @@
 
 CMakeFiles/LearnOpenGL.dir/glad.c.obj: ../glad.c
 
+CMakeFiles/LearnOpenGL.dir/Entidad.cpp.obj: C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/shader_m.h
+CMakeFiles/LearnOpenGL.dir/Entidad.cpp.obj: ../Entidad.cpp
+CMakeFiles/LearnOpenGL.dir/Entidad.cpp.obj: ../Entidad.h
+CMakeFiles/LearnOpenGL.dir/Entidad.cpp.obj: ../Objeto.h
+
 CMakeFiles/LearnOpenGL.dir/Objeto.cpp.obj: C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/shader_m.h
 CMakeFiles/LearnOpenGL.dir/Objeto.cpp.obj: ../Objeto.cpp
 CMakeFiles/LearnOpenGL.dir/Objeto.cpp.obj: ../Objeto.h
 
+CMakeFiles/LearnOpenGL.dir/Universo.cpp.obj: C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/shader_m.h
+CMakeFiles/LearnOpenGL.dir/Universo.cpp.obj: ../Entidad.h
+CMakeFiles/LearnOpenGL.dir/Universo.cpp.obj: ../Objeto.h
+CMakeFiles/LearnOpenGL.dir/Universo.cpp.obj: ../Universo.cpp
+CMakeFiles/LearnOpenGL.dir/Universo.cpp.obj: ../Universo.h
+
 CMakeFiles/LearnOpenGL.dir/esferas.cpp.obj: C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/camera.h
 CMakeFiles/LearnOpenGL.dir/esferas.cpp.obj: C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/shader_m.h
+CMakeFiles/LearnOpenGL.dir/esferas.cpp.obj: ../Entidad.h
 CMakeFiles/LearnOpenGL.dir/esferas.cpp.obj: ../Objeto.h
+CMakeFiles/LearnOpenGL.dir/esferas.cpp.obj: ../Universo.h
 CMakeFiles/LearnOpenGL.dir/esferas.cpp.obj: ../esferas.cpp
 

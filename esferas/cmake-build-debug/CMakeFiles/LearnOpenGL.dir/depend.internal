@@ -3,12 +3,25 @@
 
 CMakeFiles/LearnOpenGL.dir/glad.c.obj
  C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/glad.c
+CMakeFiles/LearnOpenGL.dir/Entidad.cpp.obj
+ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/shader_m.h
+ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Entidad.cpp
+ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Entidad.h
+ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Objeto.h
 CMakeFiles/LearnOpenGL.dir/Objeto.cpp.obj
  C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/shader_m.h
  C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Objeto.cpp
  C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Objeto.h
+CMakeFiles/LearnOpenGL.dir/Universo.cpp.obj
+ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/shader_m.h
+ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Entidad.h
+ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Objeto.h
+ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Universo.cpp
+ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Universo.h
 CMakeFiles/LearnOpenGL.dir/esferas.cpp.obj
  C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/camera.h
  C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/shader_m.h
+ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Entidad.h
  C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Objeto.h
+ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Universo.h
  C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/esferas.cpp

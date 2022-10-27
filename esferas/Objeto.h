@@ -27,7 +27,7 @@ public:
     GLint POSITION_ATTRIBUTE=0, NORMAL_ATTRIBUTE=1, TEXCOORD0_ATTRIBUTE=8;
     vec3 vel_ini, pos_ini;
     virtual GLuint setup()=0;
-    virtual void display(Shader &sh, glm::mat4 model = mat4(1.0))=0;
+    virtual void display(Shader *sh, glm::mat4 model = mat4(1.0))=0;
 };
 
 class Esfera:public Objeto{
@@ -55,7 +55,7 @@ public:
     }
     GLuint setup();
 
-    void display(Shader &sh, glm::mat4 model = mat4(1.0));
+    void display(Shader *sh, glm::mat4 model = mat4(1.0));
 };
 
 #endif //LEARNOPENGL_OBJETO_H

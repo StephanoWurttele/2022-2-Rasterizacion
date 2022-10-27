@@ -69,12 +69,12 @@ GLuint Esfera::setup() {
     return vao;
 }
 
-void Esfera::display(Shader &sh, glm::mat4 model){
+void Esfera::display(Shader *sh, glm::mat4 model){
     if(model==mat4(1.0)){
         model = scale(model, vec3(0.5));
         model = translate(model, centro);
     }
-    sh.setMat4("model", model);
+    sh->setMat4("model", model);
     if (visible) {
         glBindVertexArray(vao);
         glDrawElements(GL_TRIANGLES, indices_size, GL_UNSIGNED_INT, 0);

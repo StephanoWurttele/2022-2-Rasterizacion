@@ -30,6 +30,14 @@ sstream
 iostream
 -
 
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Entidad.cpp
+Entidad.h
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Entidad.h
+
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Entidad.h
+Objeto.h
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Objeto.h
+
 C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Objeto.cpp
 Objeto.h
 C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Objeto.h
@@ -50,6 +58,14 @@ vector
 ../LearnOpenGL/shader_m.h
 C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/shader_m.h
 
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Universo.cpp
+Universo.h
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Universo.h
+
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Universo.h
+Entidad.h
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Entidad.h
+
 C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/esferas.cpp
 glad/glad.h
 -
@@ -67,8 +83,8 @@ C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/sha
 C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/LearnOpenGL/camera.h
 iostream
 -
-Objeto.h
-C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Objeto.h
+Universo.h
+C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Universo.h
 stdlib.h
 -
 time.h

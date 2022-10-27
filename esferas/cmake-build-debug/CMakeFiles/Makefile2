@@ -92,12 +92,12 @@ clean: CMakeFiles/LearnOpenGL.dir/clean
 CMakeFiles/LearnOpenGL.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LearnOpenGL.dir\build.make CMakeFiles/LearnOpenGL.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\LearnOpenGL.dir\build.make CMakeFiles/LearnOpenGL.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\stephano.wurttele\Documents\GitHub\2022-2-Rasterizacion\esferas\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4 "Built target LearnOpenGL"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\stephano.wurttele\Documents\GitHub\2022-2-Rasterizacion\esferas\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5,6 "Built target LearnOpenGL"
 .PHONY : CMakeFiles/LearnOpenGL.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/LearnOpenGL.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\stephano.wurttele\Documents\GitHub\2022-2-Rasterizacion\esferas\cmake-build-debug\CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\stephano.wurttele\Documents\GitHub\2022-2-Rasterizacion\esferas\cmake-build-debug\CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/LearnOpenGL.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\stephano.wurttele\Documents\GitHub\2022-2-Rasterizacion\esferas\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/LearnOpenGL.dir/rule

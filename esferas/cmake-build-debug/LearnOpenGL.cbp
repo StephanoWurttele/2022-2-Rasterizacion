@@ -82,10 +82,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Entidad.cpp">
+			<Option target="LearnOpenGL"/>
+		</Unit>
+		<Unit filename="C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Entidad.h">
+			<Option target="LearnOpenGL"/>
+		</Unit>
 		<Unit filename="C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Objeto.cpp">
 			<Option target="LearnOpenGL"/>
 		</Unit>
 		<Unit filename="C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Objeto.h">
+			<Option target="LearnOpenGL"/>
+		</Unit>
+		<Unit filename="C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Universo.cpp">
+			<Option target="LearnOpenGL"/>
+		</Unit>
+		<Unit filename="C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/Universo.h">
 			<Option target="LearnOpenGL"/>
 		</Unit>
 		<Unit filename="C:/Users/stephano.wurttele/Documents/GitHub/2022-2-Rasterizacion/esferas/esferas.cpp">
