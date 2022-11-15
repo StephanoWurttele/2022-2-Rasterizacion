@@ -6,6 +6,8 @@ Piramide1/cmake-build-debug/*
 Piramide1/.idea/*
 LearnOpenGL/cmake-build-debug/*
 LearnOpenGL/.idea/*
+Superficie/cmake-build-debug/*
+Superficie/.idea/*
 # Prerequisites
 *.d
 
