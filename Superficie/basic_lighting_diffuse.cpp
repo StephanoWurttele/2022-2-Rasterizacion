@@ -76,7 +76,8 @@ int main() {
         -0.5f,  0.5f, -0.5f,
         -0.5f, -0.5f, -0.5f
     };
-    vector<vec3> puntos;
+    vector<vec3> puntos, normales;
+    float dx,dy,dz;
     /*float y, z = 0.0;
     for (float x=-10; x < 10; x+=0.01 ) {
         y = -3*x*x*x*x*x - 7.4*x*x*x*x + 3.1415*x*x - x - 2;
@@ -87,20 +88,28 @@ int main() {
         for (float y=-10; y < 10; y+=0.1 ) {
             z = 5 - x*x - y*y;
             puntos.emplace_back(vec3(x, y, z));
+            dx = -2*x - y*y;
+            dy = -x*x - 2*y;
+            dz = -x*x - y*y;
+            normales.emplace_back(normalize(vec3(dx,dy,dz)));
         }
     }
 
     // first, configure the cube's VAO (and VBO)
-    unsigned int VBO, cubeVAO;
+    unsigned int VBO[2], cubeVAO;
     glGenVertexArrays(1, &cubeVAO);
-    glGenBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, puntos.size() * sizeof(vec3), puntos.data(), GL_STATIC_DRAW);
+    glGenBuffers(2, VBO);
 
     glBindVertexArray(cubeVAO);
     // position attribute
+    glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
+    glBufferData(GL_ARRAY_BUFFER, puntos.size() * sizeof(vec3), puntos.data(), GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
     glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
+    glBufferData(GL_ARRAY_BUFFER, normales.size() * sizeof(vec3), normales.data(), GL_STATIC_DRAW);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    glEnableVertexAttribArray(1);
     glPointSize(2);
 
     while (!glfwWindowShouldClose(window)) {
@@ -138,7 +147,7 @@ int main() {
 
     // optional: de-allocate all resources once they've outlived their purpose:
     glDeleteVertexArrays(1, &cubeVAO);
-    glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(2, VBO);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     glfwTerminate();
