@@ -88,9 +88,9 @@ int main() {
         for (float y=-10; y < 10; y+=0.1 ) {
             z = 5 - x*x - y*y;
             puntos.emplace_back(vec3(x, y, z));
-            dx = -2*x - y*y;
-            dy = -x*x - 2*y;
-            dz = -x*x - y*y;
+            dx = 2*x + y*y;
+            dy = x*x + 2*y;
+            dz = x*x + y*y + 1;
             normales.emplace_back(normalize(vec3(dx,dy,dz)));
         }
     }
